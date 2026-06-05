@@ -1,7 +1,7 @@
 import express from 'express'
 import {checkEmail, completeProfile, verifyOTP, logoutUser, refreshAccessToken} from '../Controller/userController.js'
 import { upload } from '../Middleware/multer.js'
-import verifyJWT from '../Middleware/auth.js'
+import verifyJWT from '../Middleware/Auth.js'
 
 const router = express.Router()
 
