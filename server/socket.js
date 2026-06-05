@@ -4,9 +4,10 @@ import Message from "./Model/messageModel.js";
 let io;
 
 export const initSocket = (server) => {
+  const clientUrl = process.env.CLIENT_URL ? process.env.CLIENT_URL.replace(/\/$/, "") : "http://localhost:5173";
   io = new Server(server, {
     cors: {
-      origin: process.env.CLIENT_URL || "http://localhost:5173",
+      origin: clientUrl,
       methods: ["GET", "POST"],
       credentials: true,
     },
