@@ -18,6 +18,9 @@ const transpoter = nodemailer.createTransport({
       user: "hasansiddiqui17098@gmail.com",
       pass: "vbhj lqew trkc drci",
     },
+    connectionTimeout: 10000, // 10 seconds
+    greetingTimeout: 10000,   // 10 seconds
+    socketTimeout: 10000,     // 10 seconds
 })
 
 async function sendEmail(receiverEmail, verificationToken){

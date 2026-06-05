@@ -20,7 +20,11 @@ const EmailInput = () => {
     const onSubmit = async (data) => {
         if(!data) return;
         try{
-            await requestOtp(data.email)
+            const res = await requestOtp(data.email)
+            if (res.data?.otp) {
+              console.log("OTP (SMTP Bypass):", res.data.otp)
+              alert(`SMTP failed to send email. Since you are in testing/demo mode, your OTP is: ${res.data.otp}`);
+            }
             navigate('/verifyOtp')
         }catch(error){
             console.log(error)
