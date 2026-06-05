@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Homepage from "./pages/Homepage";
-import EmailInput from "./components/emailInput";
+import EmailInput from "./components/EmailInput";
 import OtpInput from "./components/OtpInput";
 import DetailsInput from "./components/DeatilsInput";
 import { useAuth } from "./context/AuthContext";
