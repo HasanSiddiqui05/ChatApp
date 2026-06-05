@@ -4,10 +4,24 @@ import Message from "./Model/messageModel.js";
 let io;
 
 export const initSocket = (server) => {
-  const clientUrl = process.env.CLIENT_URL ? process.env.CLIENT_URL.replace(/\/$/, "") : "http://localhost:5173";
+  const allowedOrigins = [
+    process.env.CLIENT_URL ? process.env.CLIENT_URL.replace(/\/$/, "") : null,
+    "http://localhost:5173",
+  ].filter(Boolean);
+
   io = new Server(server, {
     cors: {
-      origin: clientUrl,
+      origin: (origin, callback) => {
+        if (!origin) return callback(null, true);
+        const isAllowed = allowedOrigins.includes(origin) || 
+                          origin.endsWith(".vercel.app") ||
+                          origin === "http://localhost:5173";
+        if (isAllowed) {
+          callback(null, true);
+        } else {
+          callback(new Error("Not allowed by CORS"));
+        }
+      },
       methods: ["GET", "POST"],
       credentials: true,
     },
